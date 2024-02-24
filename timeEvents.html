@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timing Based Events</title>
+</head>
+<body>
+    <h1>Timing Based Events</h1>
+    <button id="startBtn">Start</button>
+    <button id="Stop">Stop</button>
+</body>
+
+<script>
+    // 1: SetInterval
+    // 2: ClearInterval
+    // 3: SetTimeOut
+    // 4: ClearTimeOut
+
+   const divV=document.createElement('div');
+   divV.textContent=" Click Me";
+   document.body.appendChild(divV);
+   const ans=divV.addEventListener('click',()=>{
+    var count=0;
+    timeRef=setInterval(()=>{
+        divV.innerHTML=count;
+        console.log("Tick");
+        count++;
+    },1000)
+   })
+   
+//    const stop=document.getElementById('Stop');
+//    stop.addEventListener('click',()=>{
+//     clearInterval(timeRef)
+//    })
+
+  const btn=document.createElement('button');
+  btn.textContent="Button";
+  document.body.appendChild(btn);
+
+  const startBtn=document.getElementById('startBtn');
+  startBtn.addEventListener('click',()=>{
+    startBtn.innerHTML='Loading...';
+
+    timeOutRef=setTimeout(()=>{
+        startBtn.innerHTML="startBtn";
+    },2000)
+  })
+
+  const Stop=document.getElementById('Stop');
+  Stop.addEventListener('click',()=>{
+    clearTimeout(timeOutRef)
+    
+  })
+</script>
+</html>
