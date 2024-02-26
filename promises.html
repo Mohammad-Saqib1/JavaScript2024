@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Best Jokes</title>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Best Jokes to make your day</h3>
+        <div class="joke" id="joke">Awesome Joke Is Loading...</div>
+        <button class="jokeBtn" id="btn">Next Joke</button>
+    </div>
+</body>
+<script>
+    const jokes = document.querySelector('#joke');
+    const jokeBtn = document.querySelector('.jokeBtn');
+
+    const generateJokes = async () => {
+        try {
+            const setHeader = {
+                headers: {
+                    Accept: "application/json"
+                }
+            }
+            const res = await fetch('https://icanhazdadjoke.com', setHeader);
+            const data = await res.json();
+            jokes.innerHTML = data.joke;
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+    jokeBtn.addEventListener('click', generateJokes);
+    generateJokes();
+</script>
+
+</html>
